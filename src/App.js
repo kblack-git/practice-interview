@@ -7,7 +7,7 @@ function App() {
 
   const [dogPic, setDogPic ] = useState()
 
-  const url = '/breeds/list/all/random';
+  const url = 'https://dog.ceo/api/breeds/image/random';
 const options = {
 	method: 'GET',
 	// headers: {
@@ -20,9 +20,10 @@ useEffect(() => {
     const fetchDogPic = async () => {
       try {
 	const response = await fetch(url, options);
-	const result =  response.json();
-	console.log(result.message)
-  setDogPic(result)
+	const result =  await response.json();
+  
+	console.log(result)
+  setDogPic(result.message)
         }  catch(error) {
     console.error(error);
 
@@ -57,7 +58,7 @@ useEffect(() => {
   return (
     <div className="App">
       <header className="App-header">
-       <img src={dogPic.message} />
+       <img src={dogPic} />
        
       </header>
     </div>
